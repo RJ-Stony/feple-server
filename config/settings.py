@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 
+from django.contrib.auth.context_processors import auth
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -39,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Callytics 모델 추가
     'apps.callytics',
+    # Consultlytics 모델 추가
+    'apps.consultlytics',
 ]
 
 MIDDLEWARE = [
