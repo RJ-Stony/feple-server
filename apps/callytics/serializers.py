@@ -14,7 +14,6 @@ apps/callytics/serializers.py
   Body: { audio: <file>, user_id: 1, gender: "male", age: 30 }
 """
 
-# serializers.py
 from rest_framework import serializers
 
 class FileUploadSerializer(serializers.Serializer):
