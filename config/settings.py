@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'apps.callytics',
     # Consultlytics 모델 추가
     'apps.consultlytics',
+    # celery 결과 추가
+    'django_celery_results',
 ]
 
 MIDDLEWARE = [
@@ -122,6 +124,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+
+MEDIA_ROOT = os.getenv("MEDIA_ROOT")  # 업로드된 파일 저장 경로
+MEDIA_URL  = os.getenv("MEDIA_URL")   # 미디어 파일 서빙 URL
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
