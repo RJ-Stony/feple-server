@@ -7,7 +7,7 @@ apps/consultlytics/models.py
 카테고리(Category), 스크립트 지표(ScriptMetric), 최종 결과(ResultClassification)를
 별도 관리하며, 관계 설정 및 필드 설명을 자세히 작성했습니다.
 
-<마이그레이션 안내>
+< 마이그레이션 안내 >
 1) 앱 생성·등록 후
    $ python manage.py makemigrations consultlytics
 2) 테이블 생성/변경 반영

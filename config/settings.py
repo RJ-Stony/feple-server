@@ -10,25 +10,22 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+import os
 from pathlib import Path
-
 from django.contrib.auth.context_processors import auth
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+load_dotenv(BASE_DIR / ".env")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-kb*l6ckx%^zvk8*bj88^ojt9tko05*_((83s(^y9!2)pon$#as'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
 ALLOWED_HOSTS = []
 
+SECRET_KEY        = os.getenv("DJANGO_SECRET_KEY")
+DEBUG             = os.getenv("DJANGO_DEBUG", "False") == "True"
 
 # Application definition
 
@@ -79,9 +76,13 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE":   "django.db.backends.mysql",
+        "NAME":     os.getenv("DB_NAME"),
+        "USER":     os.getenv("DB_USER"),
+        "PASSWORD": os.getenv("DB_PASSWORD"),
+        "HOST":     os.getenv("DB_HOST"),
+        "PORT":     os.getenv("DB_PORT", "3306"),
     }
 }
 
@@ -128,4 +129,12 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # 분석 프레임 간 hop length
-HOP_LENGTH = 512
+HOP_LENGTH = int(os.getenv("HOP_LENGTH", 512))
+
+# Callytics / Consultlytics URL
+CALLYTICS_URL     = os.getenv("CALLYTICS_URL")
+CONSULTYTICS_URL  = os.getenv("CONSULTYTICS_URL")
+
+# Celery 설정
+CELERY_BROKER_URL     = os.getenv("CELERY_BROKER_URL")
+CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND")
